@@ -3,6 +3,8 @@ import find_path
 from dotenv import load_dotenv
 import os
 
+import asyncio
+
 # .env 파일 로드
 load_dotenv()
 
@@ -14,4 +16,4 @@ urls='case-file-path.txt'
 
 if __name__ == "__main__":
     # 지정된 URL에서 크롤링할 URL 목록 저장
-    find_path.url_crawling(urls, POST_API)
+    asyncio.run(find_path.url_crawling(urls, POST_API))
