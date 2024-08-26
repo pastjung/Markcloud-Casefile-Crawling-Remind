@@ -18,7 +18,7 @@ def read_urls(urls: str, BASE_URL: str):
     
     return file_paths
 
-def write_csv_file_from_txt(file_paths: str, BASE_URL: str, csv_file_name: str):    
+def write_csv_file_from_txt(file_paths: str, csv_file_name: str):    
     # CSV 파일에 데이터 저장
     for file_path in file_paths:
         # 파일 이름 가져오기
@@ -112,4 +112,4 @@ def make_csv_from_url(urls: str, BASE_URL: str, csv_file: str):
     file_paths = read_urls(urls, BASE_URL)
     
     # 리스트에 저장된 URL의 데이터를 크롤링하여 csv 파일에 저장
-    write_csv_file_from_txt(file_paths, BASE_URL, csv_file)
+    write_csv_file_from_txt(file_paths, csv_file)
