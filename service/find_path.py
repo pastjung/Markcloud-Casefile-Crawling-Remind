@@ -57,7 +57,7 @@ async def url_crawling(urls : str, POST_API: str):
             all_case_files.extend(formatted_case_files)
 
             # 크롤링한 case-file을 urls에 저장
-            async with aiofiles.open(urls, 'a') as file:
+            async with aiofiles.open(urls, 'a', encoding='utf-8') as file:
                 for url in formatted_case_files:
                     await file.write(url + '\n')
 
