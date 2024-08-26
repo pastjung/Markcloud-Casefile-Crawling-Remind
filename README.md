@@ -1,11 +1,13 @@
 # case-file Crawling
 
 > Initial written at August 24, 2024 <br/>
-> last updated at: August 24, 2024
+> last updated at: August 26, 2024
 
-## Current: ver. 1.0.0<br/>
-
-> - case-file 크롤링 후 .csv 파일로 저장 & case-file-path.txt를 통해 진행도 확인 가능
+## Current: ver. 1.0.1<br/>
+> - ver. 1.0.0
+>   - case-file 크롤링 후 .csv 파일로 저장 & case-file-path.txt를 통해 진행도 확인 가능
+> - ver. 1.0.1
+>   - URL 크롤링의 경우 비동기 처리, .csv 파일에 저장하는 작업의 경우 멀티 쓰레드를 적용하여 속도 향상
 
 # 1. 프로그램 (프로젝트) 설명
 
@@ -28,4 +30,7 @@
     3. 필요한 라이브러리 설치 : `pip install -r requirements.txt`
     4. 프로젝트 실행 : `python service/main.py`
 
-# 4. 참고 문서
+# 4. 주의 사항
+- 본 프로젝트는 (주)마크클라우드 인턴 기간의 2024.08.16에 수행한 작업으로 크롤링한 URL은 비공개 정보입니다
+- 따라서 .env 파일의 정보는 공개가 불가능하며 내부 정보는 private로 만들어진 github repository에 적혀있으니 권한이 있는 분들은 아래 링크를 참고해주세요.
+- 링크 : https://github.com/pastjung/Markcloud-Casefile-Crawling
