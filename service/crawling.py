@@ -18,24 +18,21 @@ def read_urls(urls: str, BASE_URL: str):
     
     return file_paths
 
-def write_csv_file_from_txt(file_paths: str, csv_file_name: str):    
-    # CSV 파일에 데이터 저장
-    for file_path in file_paths:
-        # 파일 이름 가져오기
-        file_name = file_path.split('/')[-1]
+def write_csv_file_from_txt(file_paths: str, csv_file_name: str):  
     
-        # URL로부터 데이터 크롤링
-        data = get_data(file_path)
-        
-        if data is not None:
-            # 크롤링한 데이터 csv 파일에 저장
-            write_csv(data, csv_file_name)
-            print(f"{file_name}: Text has been written to case-file.csv")
-        else:
-            print(f"{file_name}: None Data")
-        
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+    
+    # 멀티스레드로 크롤링 작업 수행
+    with ThreadPoolExecutor(max_workers=4) as executor:
+        futures = [executor.submit(write_csv, file_path, csv_file_name) for file_path in file_paths]
+        for future in as_completed(futures):
+            # future.result()  # 결과를 호출
+            try:
+                future.result()  # 결과를 호출하여 예외를 발생시키면 처리
+            except Exception as e:
+                print(f"An error occurred while executing a thread: {e}")
+    
     print("All Text has been written to case-file.csv")
-
 
 def get_data(file_path: str):
     # Chrome 드라이버 옵션 설정
@@ -86,8 +83,20 @@ def get_data(file_path: str):
 
     except Exception as e:
         print("An error occurred:", e)
+        return None
+
     
-def write_csv(data: list, csv_file_name: str):
+def write_csv(file_path: str, csv_file_name: str):
+    # 파일 이름 가져오기
+    file_name = file_path.split('/')[-1]
+    
+    # URL로부터 데이터 크롤링
+    data = get_data(file_path)
+        
+    if data is None:
+        print(f"{file_name} is None")
+        return
+    
     # 파일이 존재하는지 확인
     file_exists = os.path.isfile(csv_file_name)
 
@@ -106,6 +115,8 @@ def write_csv(data: list, csv_file_name: str):
         
         # 두번째 행부터 데이터 추가
         csv_writer.writerow(data)
+        
+    print(f"{file_name}: Text has been written to case-file.csv")
     
 def make_csv_from_url(urls: str, BASE_URL: str, csv_file: str):
     # txt 파일에서 URL을 불러와 리스트에 저장
