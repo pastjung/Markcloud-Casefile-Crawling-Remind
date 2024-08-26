@@ -34,3 +34,6 @@
 - 본 프로젝트는 (주)마크클라우드 인턴 기간의 2024.08.16에 수행한 작업으로 크롤링한 URL은 비공개 정보입니다
 - 따라서 .env 파일의 정보는 공개가 불가능하며 내부 정보는 private로 만들어진 github repository에 적혀있으니 권한이 있는 분들은 아래 링크를 참고해주세요.
 - 링크 : https://github.com/pastjung/Markcloud-Casefile-Crawling
+
+# 5. 추가 고려 사항
+- Related Case(s) 가 여러개인 경우 존재 → 리스트 형태로 .csv 파일에 저장하도록 변경 고려
