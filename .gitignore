@@ -2,3 +2,4 @@ __pycache__
 venv
 .env
 case-file-path.txt
+case-file.csv
